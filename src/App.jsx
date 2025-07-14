@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import ModulePreview from "./ModulePreview";
 import ProgressiveOverload from "./ProgressiveOverload";
-import Biomechanics from "./Biomechanics";
+import Biomechanics from "./biomechanics";
 import Nutrition from "./nutrition"; // 
 import MuscleGroups from "./muscleGroups"; // 
 import Settings from "./Settings";
