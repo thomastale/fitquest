@@ -1,9 +1,9 @@
-Settings.jsx
-
 import { useNavigate } from "react-router-dom";
+import { useUserSettings } from "./UserSettingsContext";
 
 export default function Settings() {
   const navigate = useNavigate();
+  const { experienceLevel, setExperienceLevel } = useUserSettings();
 
   return (
     <div
@@ -16,8 +16,24 @@ export default function Settings() {
       >
         ← Back
       </button>
+
       <h2 className="text-xl font-bold mb-4">Settings</h2>
-      <p>Settings page coming soon! Customize your app here.</p>
+
+      <div className="mb-6">
+        <label className="block font-semibold mb-2">Experience Level:</label>
+        <select
+          value={experienceLevel}
+          onChange={(e) => setExperienceLevel(e.target.value)}
+          className="w-full p-2 rounded-md border"
+        >
+          <option value="beginner">Beginner</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+
+      <p className="text-sm mt-6 text-gray-500">
+        (This setting updates feedback across modules)
+      </p>
     </div>
   );
 }

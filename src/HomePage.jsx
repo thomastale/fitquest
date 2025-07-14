@@ -54,31 +54,45 @@ export default function HomePage() {
 
       {/* Modules */}
       <div className="space-y-6 px-4">
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="relative bg-blue-500 text-white rounded-md p-4 shadow-md flex items-center justify-between border-2 border-white cursor-pointer"
-          onClick={() => navigate("/progressive-overload")} // <-- updated route here
-        >
-          <p className="font-bold text-sm">Progressive Overload</p>
-          <ArrowRight className="h-5 w-5" />
-          {/* Tooltip */}
+        {[
+          {
+            label: "Progressive Overload",
+            path: "/progressive-overload",
+            tooltip: "Start your strength journey!",
+          },
+          {
+            label: "Biomechanics",
+            path: "/biomechanics",
+            tooltip: "Learn how your body moves!",
+          },
+          {
+            label: "Nutrition",
+            path: "/nutrition",
+            tooltip: "Fuel your gains!",
+          },
+          {
+            label: "Muscle Groups",
+            path: "/muscle-groups",
+            tooltip: "Know what you're working!",
+          },
+        ].map((module, index) => (
           <motion.div
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-            className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 text-[10px] text-white bg-black rounded border border-white"
+            key={index}
+            whileHover={{ scale: 1.02 }}
+            className="relative bg-blue-500 text-white rounded-md p-4 shadow-md flex items-center justify-between border-2 border-white cursor-pointer"
+            onClick={() => navigate(module.path)}
           >
-            Start your strength journey!
-            <div className="w-2 h-2 bg-black rotate-45 absolute left-1/2 -translate-x-1/2 top-full -mt-1 border-l border-b border-white"></div>
+            <p className="font-bold text-sm">{module.label}</p>
+            <ArrowRight className="h-5 w-5" />
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 text-[10px] text-white bg-black rounded border border-white"
+            >
+              {module.tooltip}
+              <div className="w-2 h-2 bg-black rotate-45 absolute left-1/2 -translate-x-1/2 top-full -mt-1 border-l border-b border-white"></div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-
-        {["Biomechanics", "Nutrition", "Muscle Groups"].map((module) => (
-          <div
-            key={module}
-            className="bg-gray-400 text-white rounded-md p-4 shadow-md flex items-center justify-between"
-          >
-            <p className="font-bold text-sm">{module}</p>
-          </div>
         ))}
       </div>
     </div>

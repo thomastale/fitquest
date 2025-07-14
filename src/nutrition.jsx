@@ -1,52 +1,34 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
-import { useUserSettings } from "./UserSettingsContext";
 
-import bicep from "./animations/bicep.json";
 import avocado from "./animations/avocado.json";
-import dips from "./animations/Dips.json";
-import running from "./animations/Running.json";
 
-const animations = [bicep, avocado, dips, running];
-
-export default function ProgressiveOverload() {
+export default function Nutrition() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [feedback, setFeedback] = useState("");
   const [animationData, setAnimationData] = useState(null);
-  const { experienceLevel } = useUserSettings();
 
-  const question = "What is the primary principle behind progressive overload?";
+  const question = "Which nutrient is essential for muscle repair?";
   const options = [
-    "Increasing workout intensity over time",
-    "Doing the same workout every day",
-    "Skipping rest days",
-    "Focusing only on cardio",
+    "Carbohydrates",
+    "Proteins",
+    "Fats",
+    "Vitamins",
   ];
 
-  const correctIndex = 0;
+  const correctIndex = 1;
 
   useEffect(() => {
-    // Pick a random animation on mount
-    const random = Math.floor(Math.random() * animations.length);
-    setAnimationData(animations[random]);
+    setAnimationData(avocado);
   }, []);
 
   function handleAnswer(index) {
     setSelectedAnswer(index);
-
     if (index === correctIndex) {
-      setFeedback(
-        experienceLevel === "beginner"
-          ? "🔥 Correct! Start with bodyweight squats."
-          : "🔥 Correct! Try drop sets for max gains."
-      );
+      setFeedback("💪 Correct! Protein fuels your gains!");
     } else {
-      setFeedback(
-        experienceLevel === "beginner"
-          ? "Nah, fam. Try focusing on gradual intensity."
-          : "Not quite! Avoid adding too much weight too fast."
-      );
+      setFeedback("Try again, fam! Protein is the muscle MVP.");
     }
   }
 
@@ -73,7 +55,7 @@ export default function ProgressiveOverload() {
             className={`w-full p-3 rounded-md border ${
               selectedAnswer === i
                 ? i === correctIndex
-                  ? "bg-green-400 border-green-600 text-white"
+                  ? "bg-blue-500 border-blue-600 text-white"
                   : "bg-red-400 border-red-600 text-white"
                 : "bg-gray-100 border-gray-300"
             } font-semibold text-left`}
